@@ -1,30 +1,30 @@
+from roboticstoolbox import Robot
 from numpy import ndarray, array
-from roboticstoolbox import ET, Link, Robot
-from spatialmath import quaternion
 from math import pi
-from tabulate import tabulate
 from rotools import Nobot
 
 if __name__ == '__main__':
-    title = 'robot 2DOF'
+    title = 'robot 3DOF'
 
-    d: ndarray = array([1.0, 1.0])
-    Q: ndarray = array([0.0, 0.0])
-    q: ndarray = array([0.0, 0.0])
+    d: ndarray = array([1.0, 1.0, 1.0, 1.0])
+    Q: ndarray = array([0.0, pi/2, 0.0, 0.0, -pi/2])
+    q: ndarray = array([0.0, 0.0, 0.0])
 
     transform = [
-            ['Rz'],
+            ['tz', 'Rz'],
+            ['tx', 'Rx', 'Rz'],
             ['tx', 'Rz'],
-            ['tx'],
-    ]
+            ['tx', 'Rx'],
+        ]
 
-    joint = [ 'R', 'R', None ]
+    joint = ['R', 'R', 'R', None]
 
     lims = [
-        [-pi, pi],
-        [-pi, pi],
-        [-pi, pi]
-    ]
+            [-pi, pi],
+            [-pi, pi],
+            [-pi, pi],
+            [-pi, pi]
+        ]
 
     nobot = Nobot(d, Q, q, transform, joint, lims)
 
@@ -33,8 +33,9 @@ if __name__ == '__main__':
     links = nobot.getlinks(Aij)
 
     robot = Robot(links, name = title)
-    q[0] = pi/4
-    q[1] = pi/4
+    q[0] = pi/3
+    q[1] = pi/5
+    q[2] = pi/7
 
     nobot.info(robot, q, 'robot', 'A', 'Euler', 'quat', 'q')
     # nobot.tab('\nq:', robot.ik_NR(robot.fkine(q))[0])
