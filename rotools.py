@@ -49,3 +49,22 @@ class Nobot():
             )
             links.append(l)
         return links
+
+    def info(self, robot, q, *prints):
+        A = robot.fkine(q)
+
+        for _ in prints:
+            if 'robot' == _.lower():
+                print(robot)
+            if 'A' == _.upper():
+                print('{}^{0}A_{f}:')
+                print(A)
+            if 'euler' == _.lower():
+                print('Ángulos de Euler')
+                print(tabulate([A.eul()], headers = ['\u03C6','\u03B8','\u03C8'], tablefmt = 'simple_grid'))
+            if 'quat' in _.lower():
+                print(f'\nCuaternión:\n[{A.UnitQuaternion()} ]')
+            
+            if 'q' == _.lower():
+                print('\nq:')
+                print(tabulate([robot.ik_NR(A)[0]], tablefmt = 'simple_grid'))

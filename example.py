@@ -36,6 +36,8 @@ if __name__ == '__main__':
     q[0] = pi/4
     q[1] = pi/4
 
+    nobot.info(robot, q, 'robot', 'A', 'Euler', 'quat', 'q')
+
     try:
         robot.plot(q, block = True, backend = 'pyplot')
     except KeyboardInterrupt:
