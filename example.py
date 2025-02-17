@@ -1,11 +1,12 @@
-import numpy as np
+from numpy import ndarray, array
 from roboticstoolbox import ET, Link, Robot
 from spatialmath import quaternion
 from math import pi
 from tabulate import tabulate
+from rotools import Nobot
 
 if __name__ == '__main__':
-   
+    """
    a0: float = 1.0
    d1: float = 1.0
    d2: float = 1.0
@@ -13,8 +14,29 @@ if __name__ == '__main__':
    q1: float = 0.0
    q2: float = 0.0
    q3: float =0.0
-   q: np.ndarray = np.array([q1,q2,q3])
- 
+    """
+    d: ndarray = array([1.0, 1.0])
+    Q: ndarray = array([0.0, 0.0])
+    q: ndarray = array([0.0, 0.0])
+
+    transform = [
+            ['Rz'],
+            ['tx', 'Rz'],
+            ['tx'],
+    ]
+
+    joint = [ 'R', 'R', None ]
+
+    lims = [
+        [-pi, pi],
+        [-pi, pi],
+        [-pi, pi]
+    ]
+
+    nobot = Nobot(d, Q, q, transform, joint, lims)
+
+    Aij = nobot.getA()
+"""
    A01: ET = ET.tz(a0) * ET.Rz()
    A12: ET = ET.tx(d1) * ET.Rx(pi/2) * ET.Rz()
    A23: ET = ET.tx(d2) * ET.Rz()
@@ -47,3 +69,4 @@ if __name__ == '__main__':
         robot.plot(q, block = True, backend = 'pyplot')
    except KeyboardInterrupt:
         exit(0)
+"""
