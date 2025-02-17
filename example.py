@@ -37,24 +37,10 @@ if __name__ == '__main__':
     q[1] = pi/4
 
     nobot.info(robot, q, 'robot', 'A', 'Euler', 'quat', 'q')
+    # nobot.tab('\nq:', robot.ik_NR(robot.fkine(q))[0])
 
     try:
         robot.plot(q, block = True, backend = 'pyplot')
     except KeyboardInterrupt:
         exit(0)
-"""
-   print(robot)
- 
-   q[0] = pi/4
-   q[1] = pi/4
-   q[2] = pi/4
- 
-   A = robot.fkine(q)
-   print(A)
-   phi, theta, psi = A.eul()
-   print(tabulate([A.eul()], headers = ['phi', 'theta', 'psi'], tablefmt = 'simple_grid'))
-   quat: quaternion.UnitQuaternion = A.UnitQuaternion()
-   print(f'\nquat = {quat}')
-   sol: tuple = robot.ik_NR(A)[0]
-   print(f'\nq = {sol}')
-"""
+

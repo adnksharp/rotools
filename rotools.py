@@ -50,6 +50,14 @@ class Nobot():
             links.append(l)
         return links
 
+    def tab(self, pre, data, title = None, style = 'simple_grid'):
+        if pre:
+            print(pre)
+        if title:
+            print(tabulate([data], headers = title, tablefmt = style))
+        else:
+            print(tabulate([data], tablefmt = style))
+
     def info(self, robot, q, *prints):
         A = robot.fkine(q)
 
@@ -60,11 +68,9 @@ class Nobot():
                 print('{}^{0}A_{f}:')
                 print(A)
             if 'euler' == _.lower():
-                print('Ángulos de Euler')
-                print(tabulate([A.eul()], headers = ['\u03C6','\u03B8','\u03C8'], tablefmt = 'simple_grid'))
+                self.tab('Ángulos de Euler', A.eul(), title = ['\u03C6','\u03B8','\u03C8'])
             if 'quat' in _.lower():
                 print(f'\nCuaternión:\n[{A.UnitQuaternion()} ]')
             
             if 'q' == _.lower():
-                print('\nq:')
-                print(tabulate([robot.ik_NR(A)[0]], tablefmt = 'simple_grid'))
+                self.tab('\nq:', robot.ik_NR(A)[0])
