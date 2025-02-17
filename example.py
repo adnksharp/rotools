@@ -36,6 +36,8 @@ if __name__ == '__main__':
     nobot = Nobot(d, Q, q, transform, joint, lims)
 
     Aij = nobot.getA()
+
+    links = nobot.getlinks(Aij)
 """
    A01: ET = ET.tz(a0) * ET.Rz()
    A12: ET = ET.tx(d1) * ET.Rx(pi/2) * ET.Rz()

@@ -36,3 +36,16 @@ class Nobot():
                     AIJ[i] *= A
         return AIJ
 
+    def getlinks(self, AIJ):
+        links: Link =[]
+        for i in range(len(AIJ)):
+            l: Link = Link(
+                AIJ[i],
+                name = f'link{i}',
+                qlim = self.range[i],
+                parent = links [i - 1] if i > 0 else None,
+                jindex = i,
+                joint = self.joints[i]
+            )
+            links.append(l)
+        return links
