@@ -76,7 +76,7 @@ q:
 ![](https://i.imgur.com/s4byc90.png)
 
 ```shell
-python3 example2D.py
+python3 example3D.py
 ```
 
 <details>
