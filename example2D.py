@@ -13,6 +13,8 @@ if __name__ == '__main__':
     
     # Variables de rotacion
     # angulo de movimiento de Ri0, Ri1, ...
+    # 0 para usar variables simbolicas
+    # !0 para usar un valor en especifico
     Q: ndarray = array([0.0, 0.0])
     # angulo de moviminento q0, q1, ... de Ri0, Ri1, etc
     # EXCLUSIVO PARA JUNTAS
