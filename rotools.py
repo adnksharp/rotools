@@ -163,7 +163,7 @@ nobot = Nobot(d, Q, q, transform, joint, lims)
 
 
         Retorno
-        -------
+        ------
         Vacio
 
         Ejemplo
